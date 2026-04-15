@@ -1,9 +1,10 @@
-title: Compliance Theater in Multi-Agent Systems
+title: "Compliance Theater in a Multi-Agent Security Audit Harness: A Case Study"
 description: A named subtype of MAST FC3 Task Verification failure, and an architectural intervention evaluated on an adversarial DeFi audit.
 author: Diego Gomez
 url: https://0xquinto.github.io
 baseurl: /compliance-theater
 theme: minima
 markdown: kramdown
+header_pages: []
 plugins:
   - jekyll-seo-tag
