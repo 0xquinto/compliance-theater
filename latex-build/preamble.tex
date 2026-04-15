@@ -1,0 +1,23 @@
+% Unicode fallbacks — Nimbus Roman lacks ✓ κ ≥ ≠ ×; provide via DejaVu Sans
+\newfontfamily\dejavusans{DejaVu Sans}
+\DeclareTextCommandDefault{\textkappa}{{\dejavusans κ}}
+
+% natbib citation style — author-year with round parens (ICLR / Anthropic convention)
+\PassOptionsToPackage{authoryear,round,sort&compress}{natbib}
+\AtBeginDocument{\setcitestyle{authoryear,round}}
+
+% Float placement — keep figures anchored where inserted
+\usepackage{float}
+\floatplacement{figure}{H}
+
+% Title rules — horizontal lines above and below title (MAST-style)
+\usepackage{titling}
+\pretitle{\begin{center}\rule{\linewidth}{0.5pt}\\[0.8em]\LARGE\bfseries}
+\posttitle{\\[0.4em]\rule{\linewidth}{0.5pt}\end{center}}
+
+% Abstract indent — narrower than body (NeurIPS convention)
+\usepackage{abstract}
+\setlength{\absleftindent}{0.08\textwidth}
+\setlength{\absrightindent}{0.08\textwidth}
+\renewcommand{\abstractnamefont}{\normalfont\bfseries\large}
+\renewcommand{\abstracttextfont}{\normalfont\small}

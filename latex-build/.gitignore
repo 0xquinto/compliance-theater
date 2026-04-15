@@ -1,0 +1,13 @@
+# Build artifacts — regenerable via build.sh
+main.aux
+main.bbl
+main.blg
+main.fdb_latexmk
+main.fls
+main.log
+main.pdf
+main.tex
+main.toc
+main.xdv
+main-source.md
+assets/
