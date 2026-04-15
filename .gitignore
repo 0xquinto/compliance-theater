@@ -8,6 +8,3 @@ vendor/
 
 # Vale — style packages are regenerable via `vale sync`
 .vale/styles/
-
-# PDF rendering: canonical copy lives in Zenodo, regenerable via pandoc+Chrome headless
-compliance-theater.pdf
