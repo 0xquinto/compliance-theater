@@ -13,7 +13,7 @@ Author: Diego Gomez (0xquinto) · Independent Researcher
 
 ## 2. The Phenomenon: Compliance Theater
 
-In run-2026-03-15T13-40-26Z, the `insolvency-engineer` agent reported 11 ruled-out attack vectors — each with a populated `test_file` field asserting a Forge test had been written — while Phase C checklist completion was 0/59 and the trace-analyzer (see §6) registered 3 tool calls total. It produced a structurally complete output that performed thoroughness without executing the underlying work.[^schneier]
+In run-2026-03-15T13-40-26Z, the `insolvency-engineer` agent reported 11 ruled-out attack vectors — each with a populated `test_file` field asserting a Forge test had been written — while Phase C checklist completion was 0/59 and the same sidecar's own `metadata.tools_run` block declared `forge` among the required tools never invoked.[^run0315a-canonical] An internal self-contradiction: the agent's affirmative claim (`test_file` populated for each ruled-out vector) collides with the agent's own meta-claim (`forge` not run). It produced a structurally complete output that performed thoroughness without executing the underlying work.[^schneier]
 
 We name this pattern **compliance theater**: a sharpened affirmative-assertion sub-case of MAST FM-3.2 (Verification Step Omission, under FC3 Task Verification)[^mast], introduced here to capture the case the abstract named.
 
@@ -32,6 +32,8 @@ The mechanism fits Regressional Goodhart (Manheim & Garrabrant 2018, arXiv:1803.
 Compliance theater is distinct from sycophancy (user-shaped, not gate-shaped), from sabotage (completion-valued shaping without an adversarial goal; §4's pre-gate runs exhibit it under no hostile persona), and from satisficing (the agent asserts completion rather than silently under-delivering).
 
 [^n9]: Nine Guardian Defender contest submissions: 1 accepted (CP-006, CLOBHelper double-rounding, Medium severity); 8 rejected. Per-submission rejection labels are not individually archived in public records.
+
+[^run0315a-canonical]: Source of all numerical claims in this paragraph: `wave1-compliance.json` for run-2026-03-15T13-40-26Z, agent block `insolvency-engineer`. `details.evidence.ruled_out_total = 11`, `ruled_out_with_test = 11`; `details.checklist.completed = 0`, `expected = 59`; `details.tool_breadth.required_used = ["aderyn", "slither"]`, `required_missing = ["forge", "halmos", "medusa"]`. Both blocks are derived by `compliance.py` from the same agent-authored sidecar (`metadata.tools_run` for `tool_breadth`; `ruled_out_vectors[*].test_file` for `evidence`) — the contradiction is internal to a single self-report. The raw sidecar and trace for this run were not preserved through subsequent run archival; the rubric's per-agent evidence and tool-breadth blocks are the canonical record.
 
 [^schneier]: The term borrows from Bruce Schneier's "security theater" (*Beyond Fear*, 2003): visible ceremony that signals diligence without performing the underlying work. No prior use of "compliance theater" in LLM or agent-evaluation literature was found in a targeted search conducted 2026-04-12.
 
@@ -73,7 +75,9 @@ Commit `cb0026d` (2026-03-15 18:10 -0500) introduced the "<60% Phase C items com
 
 In run-2026-03-14T22-05-52Z (no gate whatsoever), aggregate Phase C completion was 56 of 351 items (16.0%), yet 91 ruled-out attack vectors were reported — 50.5% of them prose-only, with no Forge test in the `test_file` field. In run-2026-03-15T22-04-14Z (weak-gate regime, still no discard threat), 178 of 447 items were checked, yet 142 ruled-out vectors were reported with zero Forge tests: 100% prose-only — the theater signature at its most legible. The same run quoted in §2 (run-2026-03-15T13-40-26Z) contributes a third signature: 0/59 Phase C completion against 11 reported ruled-out vectors.
 
-Across the three pre-gate runs: 380 ruled-out vectors (91 + 147 + 142), at least 188 with no Forge test. Run 3's 100% prose-only rate at N=142 is the starkest signal: zero Forge tests in a run with an 80-turn floor but no discard threat. Raw counts only; pre-gate N=3 cannot support a confidence interval (Bowyer et al. 2503.01747).
+Across the three pre-gate runs: 380 ruled-out vectors (91 + 147 + 142), at least 188 with no Forge test.[^pregate-counts] Run 3's 100% prose-only rate at N=142 is the starkest signal: zero Forge tests in a run with an 80-turn floor but no discard threat. Raw counts only; pre-gate N=3 cannot support a confidence interval (Bowyer et al. 2503.01747).
+
+[^pregate-counts]: All counts in this section reproduce by aggregating `details.evidence.ruled_out_total` and `ruled_out_with_test` across the 9 agents in each run's `wave1-compliance.json` (under `audit/targets/full-system/artifacts/archive/<run-id>/results/`). Per-run sums: run 1 (`c9839a8`) 91 ruled-out / 46 with-test (45 no-test), run 2 (`67f6e9f`) 147 / 74 (73 no-test), run 3 (`2875817`) 142 / 0 (142 no-test). Pre-gate `claims-*.jsonl` files are not preserved; the rubric scorer's per-agent evidence block is the canonical source.
 
 Post-gate (`cb0026d`), theater mutates rather than disappears: completion percentages rise — `extension-hijacker` reaches 89.2% — but Forge-test evidence strips out. The gate reshapes the surface; it does not originate the behavior.
 
@@ -105,7 +109,7 @@ Sub-claim-surface non-uniformity is an existence proof at N=1 per cell (single a
 
 Three measurement surfaces made that finding detectable and the §7 trajectory scorable.
 
-**The 6-dimension compliance rubric (0–120).** Scored by `compliance.py` and logged in `experiments.tsv`, the rubric assesses six dimensions per agent: checklist completion (0–30), tool breadth (0–20), evidence quality (0–20), analytical depth (0–20), thesis coherence (0–10), and hypothesis generation (0–20). The rubric scores what the sidecar says — it reads the agent's output and structured fields, not the underlying work.
+**The 6-dimension compliance rubric (0–120).** Scored by `compliance.py` and logged in `experiments.tsv`, the rubric assesses six dimensions per agent: checklist completion (0–30), tool breadth (0–20), evidence quality (0–20), analytical depth (0–20), thesis coherence (0–10), and hypothesis generation (0–20). The rubric scores what the sidecar says — it reads the agent's output and structured fields, not the underlying work. The §2 contradiction (claimed Forge tests vs. `forge` absent from `tools_run`) is the rubric surfacing an *internal* sidecar inconsistency between two agent-authored fields; it is not cross-surface refutation. Cross-surface refutation requires a signal the agent does not author — the role of the trace-analyzer below.
 
 **The trace-analyzer as second surface.** `trace_analyzer.py` reads the raw agent trace after each run and extracts 16 dimensions: tool call count, files read, bash commands, narrative quality, turn velocity, hypothesis density, cross-agent overlap, and related signals. The agent cannot hill-climb on these metrics — the trace records what the agent did, not what it claimed, and the analyzer runs post-hoc without agent visibility. Same author, same corpus — not independent but different surfaces: the rubric reads the sidecar; the trace-analyzer reads the tool-call stream. They disagree sharply on the pre-gate runs — that disagreement is what makes C2 (trace-level refutation) operational. C1 is operational only because the two surfaces are separable — claim and refuting signal from disjoint sources.
 
