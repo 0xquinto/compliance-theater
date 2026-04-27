@@ -24,7 +24,7 @@ Specific Claude models: **Opus 4.7** (extended-context drafting and review acros
 
 ## Methodological note on AI authorship
 
-The paper makes empirical claims about Claude agents' self-report failures. It was drafted by Claude agents. This recursion is acknowledged here and the role definitions are published precisely so the C1 refutation procedure (§2) can in principle apply to this artifact too: every numerical claim's footnoted source path (§2 `^run0315a-canonical`, §4 `^pregate-counts`, §5 `^cell0413-canonical`) is an explicit refutation hook for the paper's own claims.
+The paper makes empirical claims about Claude agents' self-report failures. It was drafted by Claude agents. This recursion is acknowledged here and the role definitions are published precisely so the C1 refutation procedure (§2) is applied to this artifact in §8: §5's hook is independently re-executable; §2 and §4 hooks point at canonical rubric-scorer output, since primary artifacts for those pre-gate runs were not preserved.
 
 Authorship credits the argument's framing, not the writing assistance. Per current scholarly norms (NeurIPS, Science, ACM), LLMs are not listed as authors regardless of contribution depth; specific tooling use is disclosed in acknowledgments. This repo follows that convention.
 
