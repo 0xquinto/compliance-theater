@@ -11,7 +11,16 @@ Source for the paper *Compliance Theater in a Multi-Agent Security Audit Harness
 - `compliance-theater.pdf` — rendered paper (canonical citeable artifact)
 - `assets/` — trajectory figure (`trajectory.png`) and reproducible render script (`render_trajectory.py`)
 - `latex-build/` — reproducibility recipe for the PDF (pandoc + xelatex via Docker)
+- `irr-pilot/` — inter-rater reliability pilot (scoring protocol, annotator instructions)
 - `_config.yml` — Jekyll config for GitHub Pages
+
+## Reproducibility harness
+
+The harness the paper anchors its empirical claims on lives at:
+
+**https://github.com/0xquinto/compliance-theater-harness**
+
+Every paper anchor (§2 vivid example, §4 pre-gate counts, §5 ablation matrix, §6 rubric + trace-analyzer, §7 trajectory + evidence-gate commits) resolves to a file in that repo. See its `README.md` for per-anchor reproduction commands.
 
 ## Reproducing the PDF
 
