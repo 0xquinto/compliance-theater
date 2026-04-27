@@ -32,6 +32,10 @@ cd latex-build && bash build.sh
 
 Overwrites `compliance-theater.pdf` at repo root. Requires Docker (uses `texlive/texlive:latest-full`).
 
+## Contributors
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md). Sole author: Diego Gomez. Drafted with a specialized seven-agent Claude team under direct author guidance — agent role definitions are published at `.claude/agents/thesis-*.md`.
+
 ## Licenses
 
 - Prose: [CC-BY 4.0](LICENSE-prose.txt)

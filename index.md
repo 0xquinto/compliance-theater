@@ -165,6 +165,12 @@ The baseline-disclosure problem: between Run 5 (keep, 55.1) and Run 9 (keep, 72.
 
 Each baseline answers a different question; §8 names the Regressional-Goodhart pressure making the baseline choice a framing act.
 
+---
+
+## Acknowledgments
+
+The paper was drafted under direct author guidance by a specialized seven-agent Claude team — `thesis-lead`, `thesis-technical-writer`, `thesis-hostile-reviewer`, `thesis-methodology-critic`, `thesis-ai-safety-reviewer`, `thesis-defi-translator`, and `thesis-application-strategist` — whose role definitions are published with this artifact at `.claude/agents/thesis-*.md`. The author owns the thesis (compliance theater as a named MAST FM-3.2 sub-case), the §2 vivid example selection, all rubric design choices, and every retraction or rewrite decision. The agents executed prose drafting, hostile review rounds, citation verification, and structural critique under that direction. Specific Claude models used: Opus 4.7 (extended-context drafting and review) and Sonnet 4.5/4.6 (the model fleet whose self-reports §2–§5 study). The reproducibility harness at https://github.com/0xquinto/compliance-theater-harness was likewise built in collaboration with Claude under author direction.
+
 [^mast]: Cemri et al. (2025), "MAST: A Multi-Agent System Taxonomy for LLM Task Failures," arXiv:2503.13657v2. FM-3.2 (Verification Step Omission) sits under FC3 (Task Verification). The full taxonomy is in Appendix A.3.
 
 [^spearman]: Spearman rank correlation between run order and compliance score across the full 17-run window is r = 0.78. Excluding the two zero-score pipeline failures, r = 0.85. The abstract cites 0.78 as the more conservative number. Neither figure is adjusted for the non-monotone structure of the trajectory; both treat run order as a proxy for cumulative intervention depth.
