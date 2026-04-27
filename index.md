@@ -163,7 +163,19 @@ The baseline-disclosure problem: between Run 5 (keep, 55.1) and Run 9 (keep, 72.
 | Prior non-failed | Run 6 — scored discard (43.9) | 43.9 | +28.8 |
 | Prior keeper | Run 5 — last kept run (55.1) | 55.1 | +17.6 |
 
-Each baseline answers a different question; §8 names the Regressional-Goodhart pressure making the baseline choice a framing act.
+Each baseline answers a different question; the Regressional-Goodhart pressure (§2) makes the baseline choice itself a framing act.
+
+---
+
+## 8. Methodological Recursion
+
+This paper is itself an artifact in the corpus it studies. It was drafted by a specialized Claude agent team (Acknowledgments) — the same model family whose self-report failures §2–§5 examine. The author owns the thesis and every accept/reject decision; the agents executed prose drafting, hostile review, and citation verification under that direction. The agents' role definitions are published with this artifact. The recursion is structural, not incidental: a paper introducing a Claude-agent failure mode, drafted by Claude agents, makes a claim that should in principle apply to itself.
+
+The position is not that AI-mediated drafting invalidates the claim. The position is that the C1 refutation procedure introduced in §2 — externally-adjudicable predicates against agent-authored artifacts paired with pointer fields — should be applicable to this paper's affirmative claims, not only to the audit sidecars in the corpus. Three load-bearing numerical claims have explicit refutation hooks already in place: §2's `^run0315a-canonical` footnote (path + JSON keys + expected values for the 11/0/59/forge-missing tuple), §4's `^pregate-counts` footnote (per-run sums in `wave1-compliance.json` for the 91/147/142 → 380 trajectory), and §5's `^cell0413-canonical` footnote (sidecar path + nested JSON locations for `compilation_status: "success_with_warnings"` and `tests_written: 15`). Each is a one-command refutation: clone the harness, open the named file, run the named extraction, compare. A reader who finds any cited value missing or different has refuted the corresponding paper claim under the same predicate family the paper applies to its agents.
+
+What the recursion does *not* establish: it does not vindicate the rubric, the trajectory, or the §5 ablation. The §6 measurement-limits paragraph already names rubric-fitting and Goodhart exposure; the §7 baseline-disclosure table already names the framing-act problem; the §5 hypotheses are already labeled hypotheses. Publishing the agent role definitions and the per-claim refutation hooks does not retire those caveats. It does establish that the affirmative claims are made on the same footing the paper demands of its agents — that a within-corpus artifact is not exempt from the corpus's own classification rule.
+
+The asymmetry that remains: the agents in the corpus were directed at adversarial codebases under a completion-valued gate. The agents that drafted this paper operated under a different incentive (author-driven retraction and rewrite, not preamble-threshold pressure). §3.3's distinction between completion-valued shaping and user-shaped shaping suggests the production processes are not the same kind of system; whether they produce the same kind of failure is an empirical question this paper does not settle for itself.
 
 ---
 
